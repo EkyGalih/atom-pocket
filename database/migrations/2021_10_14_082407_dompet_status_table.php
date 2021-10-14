@@ -15,7 +15,7 @@ class DompetStatusTable extends Migration
     {
         Schema::create('dompet_status', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
-            $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->enum('status_dompet', ['Aktif', 'Tidak Aktif']);
             $table->timestamps();
         });
     }

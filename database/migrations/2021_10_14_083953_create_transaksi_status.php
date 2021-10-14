@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategoriStatus extends Migration
+class CreateTransaksiStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateKategoriStatus extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_status', function (Blueprint $table) {
+        Schema::create('transaksi_status', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
-            $table->enum('status_kategori', ['Aktif', 'Tidak Aktif']);
+            $table->enum('status_transaksi', ['Aktif', 'Tidak Aktif']);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateKategoriStatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori_status');
+        Schema::dropIfExists('transaksi_status');
     }
 }
