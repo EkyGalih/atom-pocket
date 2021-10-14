@@ -15,7 +15,7 @@ class CreateKategoriStatus extends Migration
     {
         Schema::create('kategori_status', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
-            $table->enum('status_kategori', ['Aktif', 'Tidak Aktif']);
+            $table->enum('status_kategori', ['Aktif', 'Tidak Aktif'])->default('Aktif');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateTransaksiStatus extends Migration
     {
         Schema::create('transaksi_status', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
-            $table->enum('status_transaksi', ['Aktif', 'Tidak Aktif']);
+            $table->enum('status_transaksi', ['Masuk', 'Keluar']);
             $table->timestamps();
         });
     }

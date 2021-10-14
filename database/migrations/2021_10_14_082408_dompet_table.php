@@ -15,9 +15,9 @@ class DompetTable extends Migration
     {
         Schema::create('dompet', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
-            $table->string('nama', 100);
-            $table->string('referensi', 100);
-            $table->text('deskripsi');
+            $table->string('nama', 5);
+            $table->string('referensi')->nullable();
+            $table->text('deskripsi', 100)->nullable();
             $table->string('status_ID', 40);
 
 
