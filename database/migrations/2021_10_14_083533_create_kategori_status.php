@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DompetStatusTable extends Migration
+class CreateKategoriStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class DompetStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('dompet_status', function (Blueprint $table) {
+        Schema::create('kategori_status', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
             $table->enum('status', ['Aktif', 'Tidak Aktif']);
             $table->timestamps();
@@ -27,6 +27,6 @@ class DompetStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dompet_status');
+        Schema::dropIfExists('kategori_status');
     }
 }
