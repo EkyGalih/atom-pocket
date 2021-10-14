@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="https://www.atomic.id/images/logo/logo_og.png">
     <title>@yield('title')</title>
+    @yield('additional-css')
     @include('layouts.master.css')
 </head>
 <body>
@@ -21,17 +22,17 @@
                     </div>
                     <div id="isi_silebar">
                         <ul>
-                            <li><a href="#">MASTER</a></li>
+                            <li>Master</li>
                             <ul>
-                                <li><a href="#">Dompet</a></li>
-                                <li><a href="#">Kategori</a></li>
+                                <li><a href="{{ route('dompet') }}">Dompet</a></li>
+                                <li><a href="">Kategori</a></li>
                             </ul>
-                            <li><a href="#">TRANSAKSI</a></li>
+                            <li>Transaksi</li>
                             <ul>
                                 <li><a href="#">Dompet Masuk</a></li>
-                                <li><a href="#">Dompet keluar</a></li>
+                                <li><a href="#">Dompet Keluar</a></li>
                             </ul>
-                            <li><a href="#">LAPORAN</a></li>
+                            <li>Laporan</li>
                             <ul>
                                 <li><a href="#">Laporan Transaksi</a></li>
                             </ul>
@@ -42,22 +43,20 @@
             <div class="col-9 col-m-7">
                 <div id="konten">
                     <div class="col-12 col-m-12">
-                        <h2>@yield('sub_title')</h2>
-                        <p>Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint. Suspendisse venenatis,Lorem ipsum dolor sit magna dolor.</p>
-                        <p>Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint. Suspendisse venenatis,Lorem ipsum dolor sit magna dolor.</p>
+                        <div class="card">
+                            <h5 class="card-header">@yield('sub_title')</h5>
+                            <div class="card-body">
+                              @yield('content')
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
         <div style="clear:both"></div>
-        <div class="row">
-            <div id="footer">
-                <div id="text">
-                    Maju Bersama Atomic Indonesia
-                </div>
-            </div>
-        </div>
+        @include('layouts.master.footer')
     </div>
-@include('layouts.master.js')
+    @yield('additional-js')
+    @include('layouts.master.js')
 </body>
 </html>
