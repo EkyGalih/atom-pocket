@@ -24,7 +24,7 @@
                         <label for="tanggal_awal">Tanggal Awal:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                             <input type="text" name="tgl_awal" class="form-control datepicker">
                         </div>
@@ -36,7 +36,7 @@
                         <label for="tanggal_akhir">Tanggal Akhir:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                             <input type="text" name="tgl_akhir" class="form-control datepicker">
                         </div>
@@ -46,8 +46,8 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label for="status">Status</label><br/>
-                        <input type="checkbox" value="Masuk" name="status[]"> Tampilkan Uang Masuk <br/>
-                        <input type="checkbox" value="Keluar" name="status[]"> Tampilkan Uang Keluar
+                        <input type="checkbox" value="Masuk" name="status[]" checked> Tampilkan Uang Masuk <br/>
+                        <input type="checkbox" value="Keluar" name="status[]" checked> Tampilkan Uang Keluar
                     </div>
                 </div>
 

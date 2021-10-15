@@ -20,25 +20,31 @@
                     <div id="judul_silebar">
                         MENU
                     </div>
-                    <div id="isi_silebar">
-                        <ul>
-                            <div class="dropdown">
-                                <li>Master</li>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="{{ route('dompet') }}">Dompet</a></li>
-                                    <li class="dropdown-item"><a href="{{ route('kategori') }}">Kategori</a></li>
-                                </ul>
-                            </div>
-                            <li>Transaksi</li>
+                    <div class="navbar navbar-expand-md navbar-light navbar-laravel" id="isi_silebar">
+                        <div class="collapse navbar-collapse">
                             <ul>
-                                <li><a href="{{ route('dompet_masuk') }}">Dompet Masuk</a></li>
-                                <li><a href="{{ route('dompet_keluar') }}">Dompet Keluar</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a href="{{ route('dompet') }}">Dompet</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('kategori') }}">Kategori</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaksi</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a href="{{ route('dompet_masuk') }}">Dompet Masuk</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('dompet_keluar') }}">Dompet Keluar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a href="{{ route('laporan') }}">Laporan Transaksi</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                            <li>Laporan</li>
-                            <ul>
-                                <li><a href="{{ route('laporan') }}">Laporan Transaksi</a></li>
-                            </ul>
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,7 +64,7 @@
         <div style="clear:both"></div>
         @include('layouts.master.footer')
     </div>
-    @yield('additional-js')
     @include('layouts.master.js')
+    @yield('additional-js')
 </body>
 </html>

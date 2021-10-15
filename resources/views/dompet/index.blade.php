@@ -4,13 +4,24 @@
 
 @section('sub_title')
 <div class="row">
-    <div class="col-8 col-m-1">
+    <div class="col-10 col-m-1">
         <h5 class="sub_title">DOMPET - </h5>
     </div>
-    <div class="col-4 col-m-1">
+    <div class="col-2 col-m-1">
         <h5 class="sub_title btn-group">
-            <a href="{{ route('dompet.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
-            <a href="#" class="btn btn-info btn-sm">Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})</a>
+
+            <a href="{{ route('dompet.create') }}" class="btn btn-primary btn-sm">Buat Baru</a> {{-- tombol buat dompet baru --}}
+
+            {{-- Membuat Fitur Filter Data dengan kondisi Aktif dan Tidak Aktif --}}
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{ route('dompet', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm" data-id="Aktif" id="status">Aktif</a>
+                </div>
+
+            </div>
         </h5>
     </div>
 </div>
@@ -40,14 +51,13 @@
                           <span class="caret"></span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">{{ $item->nama }}</a>
-                            <hr/>
-                            <a class="dropdown-item" href="{{ route('dompet.show', $item->status_ID) }}"><i class="glyphicon glyphicon-search"></i> Detail</a>
-                            <a class="dropdown-item" href="{{ route('dompet.edit', $item->dompet_id) }}"><i class="glyphicon glyphicon-pencil"></i> Ubah</a>
+                            <a class="dropdown-header" href="#">{{ $item->nama }}</a>
+                            <a class="dropdown-item" href="{{ route('dompet.show', $item->status_ID) }}"><i class="fa fa-search"></i> Detail</a>
+                            <a class="dropdown-item" href="{{ route('dompet.edit', $item->dompet_id) }}"><i class="fa fa-pencil"></i> Ubah</a>
                             @if ($item->status_dompet == 'Aktif')
-                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="glyphicon glyphicon-times"></i> Tidak Aktif</a>
+                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="fa fa-times"></i> Tidak Aktif</a>
                             @else
-                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="glyphicon glyphicon-check"></i> Aktif</a>
+                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="fa fa-check"></i> Aktif</a>
                             @endif
                         </div>
                     </div>
@@ -58,4 +68,5 @@
     </tbody>
 </table>
 @endsection
-
+@section('additional-js')
+@endsection

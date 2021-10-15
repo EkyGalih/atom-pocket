@@ -16,9 +16,17 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $dompet = Dompet::select('id as dompet_id', 'nama')->orderBy('nama', 'asc')->get(); // query untuk select semua dompet dengan pengurutan nama ascending
+        $dompet = Dompet::join('dompet_status', 'dompet.status_ID', '=', 'dompet_status.id')
+            ->select('dompet.id as dompet_id', 'nama')
+            ->where('status_dompet', '=', 'Aktif')
+            ->orderBy('nama', 'asc')
+            ->get(); // query untuk select semua dompet dengan pengurutan nama ascending
 
-        $kategori = Kategori::select('id as kategori_id', 'nama')->orderBy('nama', 'asc')->get(); // query untuk select semua kategori dengan pengurutan nama ascending
+        $kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+            ->select('kategori.id as kategori_id', 'nama')
+            ->where('status_kategori', '=', 'Aktif')
+            ->orderBy('nama', 'asc')
+            ->get(); // query untuk select semua kategori dengan pengurutan nama ascending
 
         return view('laporan.index', ['dompet' => $dompet, 'kategori' => $kategori]);
     }
@@ -53,25 +61,52 @@ class LaporanController extends Controller
     public function show(Request $request)
     {
         $data = $request->all();
+        // dd($data);
+
+        $tanggal = $data['tgl_awal'] . ' - ' . $data['tgl_akhir']; // Buat variabel tanggal untuk menampilkan range tanggal laporan yang sudah ditentukan
 
         $laporan = Transaksi::join('transaksi_status', 'transaksi.status_ID', '=', 'transaksi_status.id')
                         ->join('kategori', 'transaksi.kategori_ID', '=', 'kategori.id')
                         ->join('dompet', 'transaksi.dompet_ID', '=', 'dompet.id')
                         ->select(
+                            'dompet.ID as dompet_id',
+                            'kategori.ID as kategori_id',
                             'transaksi.tanggal',
                             'transaksi.kode',
                             'dompet.deskripsi',
                             'dompet.nama as nama_dompet',
                             'kategori.nama as nama_kategori',
-                            'transaksi.nilai'
+                            'transaksi.nilai',
+                            'transaksi_status.status_transaksi'
                             )
                         ->whereBetween('tanggal', [$data['tgl_awal'], $data['tgl_akhir']])
-                        // ->where('transaksi_status.status_transaksi', '=', $data['status'])
-                        // ->where('dompet.ID', '=', $data['dompet_id'])
-                        // ->where('kategori.ID', '=', $data['kategori_id'])
                         ->get();
 
-        return view('laporan.detail', ['laporan' => $laporan]);
+        // Membuat kondisi untuk menampilkan data sesuai dengan inputan yang telah di lakukan
+        if (count($data['status']) == 2) {
+            $laporan->where('status_transaksi', '=', 'Masuk')->Where('status_transaksi', '=', 'Keluar');
+            dd($laporan);
+        } elseif (count($data['status']) == 1) {
+            if ($data['status'] == 'Masuk') {
+                $laporan->where('status_transaksi', '=', 'Masuk');
+            } else {
+                $laporan->where('status_transaksi', '=', 'Keluar');
+            }
+            dd($laporan);
+        } elseif ($data['dompet_id'] != 'all') {
+            $laporan->where('dompet_id', '=', $data['dompet_id']);
+        } elseif ($data['kategori_id'] != 'all') {
+            $laporan->where('kategori_id', '=', $data['kategori_id']);
+        }
+
+        dd($laporan);
+        // membuat operator penjumlahan untuk masing-masing transaksi masuk dan transaksi keluar untuk di tampilkan
+        $total_masuk = $laporan->where('status_transaksi', '=', 'Masuk')->sum('nilai');
+        $total_keluar = $laporan->where('status_transaksi', '=', 'Keluar')->sum('nilai');
+
+        $total = ($total_masuk + $total_keluar); // Hitung total pengeluaran dan pemasukkan dan di tampung ke dalam variabel total
+
+        return view('laporan.detail', ['laporan' => $laporan, 'tanggal' => $tanggal, 'total_masuk' => $total_masuk, 'total_keluar' => $total_keluar, 'total' => $total]);
     }
 
     /**

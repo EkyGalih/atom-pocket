@@ -41,12 +41,12 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">{{ $item->nama }}</a>
                             <hr/>
-                            <a class="dropdown-item" href="{{ route('kategori.show', $item->status_ID) }}"><i class="glyphicon glyphicon-search"></i> Detail</a>
-                            <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}"><i class="glyphicon glyphicon-pencil"></i> Ubah</a>
+                            <a class="dropdown-item" href="{{ route('kategori.show', $item->status_ID) }}"><i class="fa fa-search"></i> Detail</a>
+                            <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}"><i class="fa fa-pencil"></i> Ubah</a>
                             @if ($item->status_kategori == 'Aktif')
-                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="glyphicon glyphicon-times"></i> Tidak Aktif</a>
+                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="fa fa-times"></i> Tidak Aktif</a>
                             @else
-                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="glyphicon glyphicon-check"></i> Aktif</a>
+                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="fa fa-check"></i> Aktif</a>
                             @endif
                         </div>
                     </div>

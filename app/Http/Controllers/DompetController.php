@@ -15,8 +15,10 @@ class DompetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($status_transaksi = null)
     {
+        $status = $status_transaksi != null ? $status_transaksi : '';
+
         // Query data dari tabel dompet dan tabel dompet_status untuk ditampilkan
         $dompet = Dompet::join('dompet_status', 'dompet.status_ID', '=', 'dompet_status.id')
                     ->select(
