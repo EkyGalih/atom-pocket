@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+    <title>Riwayat Transaksi</title>
+</head>
+<body>
+<br/><br/><br/>
+
+<center>
+    <table>
+        <tr>
+            <td colspan="10" style="text-align:center; font-size: 20px;">
+                RIWAYAT TRANSAKSI
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10" style="text-align: center; font-size: 15px;">2021-10-15 - 2021-10-16</td>
+        </tr>
+    </table>
+</center>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">#</th>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">TANGGAL</th>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">KODE</th>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">DESKRIPSI</th>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">DOMPET</th>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">KATEGORI</th>
+                        <th style="font-size: 12px font-weight: bold; border: solid;">NILAI</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                                            <tr>
+                            <td style="font-size: 12px; border: solid; text-align: center;">1</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">2021-10-15</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">WIN931482</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Bank BCA</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Eky</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">In</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">100000</td>
+                        </tr>
+                                            <tr>
+                            <td style="font-size: 12px; border: solid; text-align: center;">2</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">2021-10-15</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">WOUT64852</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Bank BCA</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Eky</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Outs</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">50000</td>
+                        </tr>
+                                            <tr>
+                            <td style="font-size: 12px; border: solid; text-align: center;">3</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">2021-10-15</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">WIN518039</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Bank BCA</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Eky</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">In</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">3500000</td>
+                        </tr>
+                                            <tr>
+                            <td style="font-size: 12px; border: solid; text-align: center;">4</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">2021-10-15</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">WOUT04563</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Bank BCA</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Eky</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">Outs</td>
+                            <td style="font-size: 12px; border: solid; text-align: center;">500000</td>
+                        </tr>
+                                    </tbody>
+            </table>
+
+            <table style="float: right;">
+                <tr>
+                    <td style="font-size: 15px; border solid;">Total Uang Masuk</td>
+                    <td style="font-size: 15px; border solid;">:</td>
+                    <td style="font-size: 15px; border solid;">3,600,000</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 15px; border solid;">Total Uang Keluar</td>
+                    <td style="font-size: 15px; border solid;">:</td>
+                    <td style="font-size: 15px; border solid;">550,000</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 15px; border solid;">Total</td>
+                    <td style="font-size: 15px; border solid;">:</td>
+                    <td style="font-size: 15px; border solid;">4,150,000</td>
+                </tr>
+            </table>
+        </div>
+   </div>
+
+   <script src="http://dompet.unizar.test/jquery/jquery.min.js"></script>
+<script src="http://dompet.unizar.test/bootstrap/popover.min.js"></script>
+<script src="http://dompet.unizar.test/bootstrap/bootstrap.min.js"></script>
+<script src="http://dompet.unizar.test/sweetAlert/sweetalert.min.js"></script>
+<script src="http://dompet.unizar.test/DataTables/dataTables.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('.dompet').DataTable({
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ /Halaman"
+        },
+        "language": {
+            "info": "Melihat _START_ s/d _END_ dari _TOTAL_ data",
+            "infoEmpty":      "0 Data Terdeteksi",
+            "infoFiltered": "(Menyaring dari _MAX_ total data)",
+            "emptyTable": "Tidak ada Data untuk Ditampilkan",
+            "search": "",
+            "searchPlaceholder": "Cari",
+            "paginate": {
+                "previous": "Sebelum",
+                "next": "Lanjut"
+            },
+            "zeroRecords":    "Tidak ada data yang cocok ditemukan",
+        }
+    });
+} );
+
+// Membuat fungsi agar form hanya bisa diinputkan angka saja
+function isInputNumber(event) {
+        var char = String.fromCharCode(event.which);
+        if (!(/[0-9]/).test(char)) {
+            event.preventDefault();
+        }
+}
+
+// Buat Format Tanggal sesuai yang di inginkan
+$( function() {
+    $( ".datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        showAnim: "slideDown"
+    });
+});
+
+</script>
+</body>
+</html>

@@ -4,10 +4,10 @@
 
 @section('sub_title')
 <div class="row">
-    <div class="col-8 col-m-1">
+    <div class="col-10 col-m-1">
         <h5 class="sub_title">KATEGORI - </h5>
     </div>
-    <div class="col-4 col-m-1">
+    <div class="col-2 col-m-1">
         <h5 class="sub_title btn-group">
             <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
             <a href="#" class="btn btn-info btn-sm">Aktif ({{ $kategori->where('status_kategori', '=', 'Aktif')->count() }})</a>

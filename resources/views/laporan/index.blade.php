@@ -26,7 +26,12 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input type="text" name="tgl_awal" class="form-control datepicker">
+                            <input type="text" name="tgl_awal" class="form-control datepicker @error('tgl_awal') is-invalid @enderror">
+                            @error('tgl_awal')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -38,7 +43,12 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input type="text" name="tgl_akhir" class="form-control datepicker">
+                            <input type="text" name="tgl_akhir" class="form-control datepicker @error('tgl_akhir') is-invalid @enderror">
+                            @error('tgl_akhir')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -81,8 +91,8 @@
 
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md">Buat laporan</button>
-            <button type="submit" class="btn btn-primary btn-md">Buat Ke Excel</button>
+            <input type="submit" class="btn btn-primary btn-md" name="click" value="Buat Laporan">
+            <input type="submit" class="btn btn-primary btn-md" name="click" value="Buat Ke Excel">
 
            </form>
         </div>

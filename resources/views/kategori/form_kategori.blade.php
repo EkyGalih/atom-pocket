@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Buat Dompet Baru')
+@section('title', 'Buat Kategori Baru')
 
 @section('additional-css')
 <link rel="stylesheet" href="{{ asset('DataTables/dataTables.min.css') }}">
@@ -8,12 +8,12 @@
 
 @section('sub_title')
 <div class="row">
-    <div class="col-8 col-m-1">
-        <div class="sub_title">DOMPET - <sub>@if (isset($edit_dompet)) Ubah Dompet @else Buat Baru @endif</sub></div> {{-- Membuat kondisi agar title menyesuaikan dengan halaman yang di akses --}}
+    <div class="col-10 col-m-1">
+        <div class="sub_title">KATEGORI - <sub>@if (isset($edit_kategori)) Ubah Kategori @else Buat Baru @endif</sub></div> {{-- Membuat kondisi agar title menyesuaikan dengan halaman yang di akses --}}
     </div>
-    <div class="col-4 col-m-4">
+    <div class="col-2 col-m-4">
         <div class="sub_title btn-group">
-            <a href="{{ route('dompet') }}" class="btn btn-primary btn-sm">Kelola Dompet</a>
+            <a href="{{ route('kategori') }}" class="btn btn-primary btn-sm">Kelola Kategori</a>
         </div>
     </div>
 </div>

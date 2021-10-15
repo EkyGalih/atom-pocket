@@ -5,10 +5,10 @@
 @section('content')
 
 <div class="row">
-    <div class="col-8 col-m-1">
+    <div class="col-10 col-m-1">
         <h5 class="sub_title">DETAIL DOMPET</h5>
     </div>
-    <div class="col-4 col-m-1">
+    <div class="col-2 col-m-1">
         <h5 class="sub_title btn-group">
             <a href="{{ route('dompet') }}" class="btn btn-primary btn-sm">Kelola Dompet</a>
         </h5>
