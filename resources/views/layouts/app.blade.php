@@ -25,7 +25,7 @@
                             <li>Master</li>
                             <ul>
                                 <li><a href="{{ route('dompet') }}">Dompet</a></li>
-                                <li><a href="">Kategori</a></li>
+                                <li><a href="{{ route('kategori') }}">Kategori</a></li>
                             </ul>
                             <li>Transaksi</li>
                             <ul>

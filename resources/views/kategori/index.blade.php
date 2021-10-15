@@ -5,11 +5,11 @@
 @section('sub_title')
 <div class="row">
     <div class="col-8 col-m-1">
-        <h5 class="sub_title">DOMPET - </h5>
+        <h5 class="sub_title">KATEGORI - </h5>
     </div>
     <div class="col-4 col-m-1">
         <h5 class="sub_title btn-group">
-            <a href="{{ route('dompet.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
+            <a href="{{ route('lategori.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
             <a href="#" class="btn btn-info btn-sm">Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})</a>
         </h5>
     </div>
