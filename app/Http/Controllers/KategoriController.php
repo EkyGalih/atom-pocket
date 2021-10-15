@@ -24,6 +24,7 @@ class KategoriController extends Controller
                         'kategori.*',
                         'kategori_status.*'
                     )
+                    ->orderBy('nama', 'asc')
                     ->get();
 
         return view('kategori.index', ['kategori' => $kategori]);
@@ -75,7 +76,16 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+                            ->select(
+                                'kategori.id as kategori_id',
+                                'kategori.*',
+                                'kategori_status.*'
+                            )
+                            ->where('kategori.status_ID', '=', $id)
+                            ->first();
+
+        return view('kategori.detail', ['show_kategori' => $show_kategori]);
     }
 
     /**

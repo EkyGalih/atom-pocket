@@ -57,8 +57,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapWebRoutes();
         $this->mapApiRoutes();
+
         $this->mapDompetRoutes();
         $this->mapKategoriRoutes();
+
+        $this->mapDompetMasukRoutes();
+        $this->mapDompetKeluarRoutes();
     }
 
     public function mapWebRoutes()
@@ -92,5 +96,19 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/kategori/kategori.php'));
+    }
+
+    public function mapDompetMasukRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/transaksi/dompet_masuk.php'));
+    }
+
+    public function mapDompetKeluarRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/transaksi/dompet_keluar.php'));
     }
 }

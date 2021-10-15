@@ -12,4 +12,5 @@ Route::group(['prefix' => 'kategori'], function () { // membuat group prefix unt
     Route::get('edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
     Route::put('update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::get('ubah_status/{id}', [KategoriController::class, 'ubah_status'])->name('kategori.status');
+    Route::get('show/{id}', [KategoriController::class, 'show'])->name('kategori.show');
 });

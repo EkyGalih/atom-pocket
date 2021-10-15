@@ -25,3 +25,4 @@ $(document).ready(function() {
     });
 } );
 </script>
+@include('layouts.sweet-alert-notification')

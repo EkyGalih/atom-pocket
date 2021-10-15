@@ -29,8 +29,8 @@
                             </ul>
                             <li>Transaksi</li>
                             <ul>
-                                <li><a href="#">Dompet Masuk</a></li>
-                                <li><a href="#">Dompet Keluar</a></li>
+                                <li><a href="{{ route('dompet_masuk') }}">Dompet Masuk</a></li>
+                                <li><a href="{{ route('dompet_keluar') }}">Dompet Keluar</a></li>
                             </ul>
                             <li>Laporan</li>
                             <ul>

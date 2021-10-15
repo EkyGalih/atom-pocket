@@ -24,6 +24,7 @@ class DompetController extends Controller
                         'dompet.*',
                         'dompet_status.*'
                     )
+                    ->orderBy('nama', 'asc')
                     ->get();
 
         return view('dompet.index', ['dompet' => $dompet]);
@@ -74,7 +75,16 @@ class DompetController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_dompet = Dompet::join('dompet_status', 'dompet.status_ID', '=', 'dompet_status.id')
+                            ->select(
+                                'dompet.id as dompet_id',
+                                'dompet.*',
+                                'dompet_status.*'
+                            )
+                            ->where('dompet.status_ID', '=', $id)
+                            ->first();
+
+        return view('dompet.detail', ['show_dompet' => $show_dompet]);
     }
 
     /**

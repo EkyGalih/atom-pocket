@@ -10,7 +10,7 @@
     <div class="col-4 col-m-1">
         <h5 class="sub_title btn-group">
             <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
-            {{-- <a href="#" class="btn btn-info btn-sm">Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})</a> --}}
+            <a href="#" class="btn btn-info btn-sm">Aktif ({{ $kategori->where('status_kategori', '=', 'Aktif')->count() }})</a>
         </h5>
     </div>
 </div>
@@ -41,9 +41,9 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">{{ $item->nama }}</a>
                             <hr/>
-                            <a class="dropdown-item" href="#home"><i class="glyphicon glyphicon-search"></i> Detail</a>
+                            <a class="dropdown-item" href="{{ route('kategori.show', $item->status_ID) }}"><i class="glyphicon glyphicon-search"></i> Detail</a>
                             <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}"><i class="glyphicon glyphicon-pencil"></i> Ubah</a>
-                            @if ($item->status_dompet == 'Aktif')
+                            @if ($item->status_kategori == 'Aktif')
                             <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="glyphicon glyphicon-times"></i> Tidak Aktif</a>
                             @else
                             <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="glyphicon glyphicon-check"></i> Aktif</a>

@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Dompet')
+@section('title', 'Dompet Masuk')
 
 @section('sub_title')
 <div class="row">
     <div class="col-8 col-m-1">
-        <h5 class="sub_title">DOMPET - </h5>
+        <h5 class="sub_title">DOMPET MASUK</h5>
     </div>
     <div class="col-4 col-m-1">
         <h5 class="sub_title btn-group">
-            <a href="{{ route('dompet.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
-            <a href="#" class="btn btn-info btn-sm">Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})</a>
+            <a href="{{ route('dompet_masuk.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
         </h5>
     </div>
 </div>
@@ -18,21 +17,24 @@
     <thead>
         <tr>
             <td>#</td>
-            <td>NAMA</td>
-            <td>REFERENSI</td>
+            <td>TANGGAL</td>
+            <td>KODE</td>
             <td>DESKRIPSI</td>
-            <td>STATUS</td>
-            <td></td>
+            <td>KATEGORI</td>
+            <td>NILAI</td>
+            <td>DOMPET</td>
         </tr>
     </thead>
     <tbody>
-        @foreach ($dompet as $item)
+        @foreach ($dompet_masuk as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->referensi }}</td>
+                <td>{{ $item->tanggal }}</td>
+                <td>{{ $item->kode }}</td>
                 <td>{{ $item->deskripsi }}</td>
-                <td>{{ $item->status_dompet }}</td>
+                <td>{{ $item->kategori }}</td>
+                <td>{{ $item->nilai }}</td>
+                <td>{{ $item->dompet }}</td>
                 <td>
 
                     <div class="btn-group">
