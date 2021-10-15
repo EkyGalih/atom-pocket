@@ -15,19 +15,36 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($status_kategori = null)
     {
-        // Query data dari tabel kategori dan tabel kategori_status untuk ditampilkan
-        $kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
-                    ->select(
-                        'kategori.id as kategori_id',
-                        'kategori.*',
-                        'kategori_status.*'
-                    )
-                    ->orderBy('nama', 'asc')
-                    ->get();
+        $status = $status_kategori != null ? $status_kategori : '';
 
-        return view('kategori.index', ['kategori' => $kategori]);
+
+        // membuat kondisi untuk menampilkan filtering dompet aktif atau tidak aktif
+        if ($status == null) {
+            // Query data dari tabel kategori dan tabel kategori_status untuk ditampilkan
+            $kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+                        ->select(
+                            'kategori.id as kategori_id',
+                            'kategori.*',
+                            'kategori_status.*'
+                        )
+                        ->orderBy('nama', 'asc')
+                        ->get();
+        } else {
+            // Query data dari tabel kategori dan tabel kategori_status untuk ditampilkan berdasarkan status yang dipilih
+            $kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+                        ->select(
+                            'kategori.id as kategori_id',
+                            'kategori.*',
+                            'kategori_status.*'
+                        )
+                        ->where('status_kategori', '=', $status)
+                        ->orderBy('nama', 'asc')
+                        ->get();
+        }
+
+        return view('kategori.index', ['kategori' => $kategori, 'status' => $status]);
     }
 
     /**

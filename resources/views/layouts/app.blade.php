@@ -12,7 +12,7 @@
 <body>
     <div id="wrap">
         <div id="header">
-            <h1>DOMPET EKY GALIH GUNANDA</h1>
+            <h1><a href="/" style="color: #fff;">DOMPET EKY GALIH GUNANDA</a></h1>
         </div>
         <div class="row">
             <div class="col-3 col-m-5">

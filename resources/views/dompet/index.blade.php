@@ -4,10 +4,10 @@
 
 @section('sub_title')
 <div class="row">
-    <div class="col-10 col-m-1">
-        <h5 class="sub_title">DOMPET - </h5>
+    <div class="col-9 col-m-1">
+        <h5 class="sub_title">DOMPET - <span style="font-size: 12px;">{{$status == "" ? 'Aktif' : $status}}</span></h5>
     </div>
-    <div class="col-2 col-m-1">
+    <div class="col-3 col-m-1">
         <h5 class="sub_title btn-group">
 
             <a href="{{ route('dompet.create') }}" class="btn btn-primary btn-sm">Buat Baru</a> {{-- tombol buat dompet baru --}}
@@ -15,10 +15,21 @@
             {{-- Membuat Fitur Filter Data dengan kondisi Aktif dan Tidak Aktif --}}
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})
+
+                    {{--  koding yang secara dinamis mengikuti nilai $status --}}
+                    {{ $status == 'Tidak Aktif' ? 'Tidak Aktif' : 'Aktif' }}
+                    ({{ $status == null ? $dompet->where('status_dompet', '=', 'Aktif')->count() : $dompet->where('status_dompet', '=', $status)->count() }})
+
                 </a>
                 <div class="dropdown-menu">
-                    <a href="{{ route('dompet', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm" data-id="Aktif" id="status">Aktif</a>
+                    {{-- Buat Kondisi untuk menampilkan link Aktif jika status Tidak Aktif, dan link Tidak Aktif jika status Aktif --}}
+                    @if ($status == 'Aktif')
+                        <a href="{{ route('dompet', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $dompet->where('status_dompet', '=', 'Aktif')->count() }} )</a>
+                    @elseif ($status == 'Tidak Aktif')
+                        <a href="{{ route('dompet', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $dompet->where('status_dompet', '=', 'Aktif')->count() }} )</a>
+                    @else
+                        <a href="{{ route('dompet', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm">Aktif ( {{ $dompet->where('status_dompet', '=', 'Tidak Aktif')->count() }} )</a>
+                    @endif
                 </div>
 
             </div>

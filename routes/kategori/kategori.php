@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route Kategori
 Route::group(['prefix' => 'kategori'], function () { // membuat group prefix untuk membedakan route yang di akses
-    Route::get('kategori', [KategoriController::class, 'index'])->name('kategori');
+    Route::get('kategori/{status?}', [KategoriController::class, 'index'])->name('kategori');
     Route::get('create', [KategoriController::class, 'create'])->name('kategori.create');
     Route::post('store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::get('edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');

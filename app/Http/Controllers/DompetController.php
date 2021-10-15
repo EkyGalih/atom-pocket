@@ -15,21 +15,35 @@ class DompetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($status_transaksi = null)
+    public function index($status_dompet = null)
     {
-        $status = $status_transaksi != null ? $status_transaksi : '';
+        $status = $status_dompet != null ? $status_dompet : '';
 
-        // Query data dari tabel dompet dan tabel dompet_status untuk ditampilkan
-        $dompet = Dompet::join('dompet_status', 'dompet.status_ID', '=', 'dompet_status.id')
-                    ->select(
-                        'dompet.id as dompet_id',
-                        'dompet.*',
-                        'dompet_status.*'
-                    )
-                    ->orderBy('nama', 'asc')
-                    ->get();
+        // membuat kondisi untuk menampilkan filtering dompet aktif atau tidak aktif
+        if ($status == null) {
+            // Query data dari tabel dompet dan tabel dompet_status untuk ditampilkan
+            $dompet = Dompet::join('dompet_status', 'dompet.status_ID', '=', 'dompet_status.id')
+                        ->select(
+                            'dompet.id as dompet_id',
+                            'dompet.*',
+                            'dompet_status.*'
+                        )
+                        ->orderBy('nama', 'asc')
+                        ->get();
+        } else {
+            // Query data dari tabel dompet dan tabel dompet_status untuk ditampilkan berdasarkan status yang dipilih
+            $dompet = Dompet::join('dompet_status', 'dompet.status_ID', '=', 'dompet_status.id')
+                        ->select(
+                            'dompet.id as dompet_id',
+                            'dompet.*',
+                            'dompet_status.*'
+                        )
+                        ->where('status_dompet', '=', $status)
+                        ->orderBy('nama', 'asc')
+                        ->get();
+        }
 
-        return view('dompet.index', ['dompet' => $dompet]);
+        return view('dompet.index', ['dompet' => $dompet, 'status' => $status]);
     }
 
     /**
