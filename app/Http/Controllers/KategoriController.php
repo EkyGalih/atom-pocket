@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KategoriValidasi;
+use App\Models\Kategori;
+use App\Models\KategoriStatus;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class KategoriController extends Controller
 {
@@ -13,7 +17,16 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        // Query data dari tabel kategori dan tabel kategori_status untuk ditampilkan
+        $kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+                    ->select(
+                        'kategori.id as kategori_id',
+                        'kategori.*',
+                        'kategori_status.*'
+                    )
+                    ->get();
+
+        return view('kategori.index', ['kategori' => $kategori]);
     }
 
     /**
@@ -23,7 +36,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('kategori.form_kategori');
     }
 
     /**
@@ -32,9 +45,26 @@ class KategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KategoriValidasi $request)
     {
-        //
+        $kategori = $request->all(); // konversi data dari object ke array
+
+        $id = (string)Uuid::generate(4);
+
+        // Query untuk insert data kategori ke database
+        KategoriStatus::create([
+            'ID' => $id,
+            'status_kategori' => $kategori['status_kategori']
+        ]);
+
+        Kategori::create([
+            'ID' => (string)Uuid::generate(4),
+            'nama' => $kategori['nama'],
+            'deskripsi' => $kategori['deskripsi'],
+            'status_ID' => $id,
+        ]);
+
+        return redirect()->route('kategori')->with(['success' => 'Kategori Berhasil Ditambahkan!']);
     }
 
     /**
@@ -56,7 +86,16 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori = Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+                    ->select(
+                        'kategori.id as kategori_id',
+                        'kategori.*',
+                        'kategori_status.*'
+                    )
+                    ->where('kategori.id', '=', $id)
+                    ->first();
+
+        return view('kategori.form_kategori', ['edit_kategori' => $kategori]);
     }
 
     /**
@@ -68,17 +107,37 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kategori = $request->all();
+
+        // Query untuk update data dalam 2 (dua) tabel sekaligus berdasarkan dompet id
+        Kategori::join('kategori_status', 'kategori.status_ID', '=', 'kategori_status.id')
+            ->where('kategori.id', '=', $id)
+            ->update([
+                'nama' => $kategori['nama'],
+                'deskripsi' => $kategori['deskripsi'],
+                'status_kategori' => $kategori['status_kategori'],
+            ]);
+
+        return redirect()->route('kategori')->with(['success' => 'Kategori Berhasil Diubah!']);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+     * Ubah status berdasarkan data yang dipilih
+    */
+    public function ubah_status($id)
     {
-        //
+        $dompet = KategoriStatus::findOrFail($id);  // Select data berdasarkan status_ID
+
+        // Buat Kondisi Untuk Mengubah status
+        if ($dompet->status_kategori == 'Aktif')
+        {
+            KategoriStatus::where('id', '=', $id)
+                ->update(['status_kategori' => 'Tidak Aktif']);
+        } else {
+            KategoriStatus::where('id', '=', $id)
+                ->update(['status_kategori' => 'Aktif']);
+        }
+
+        return redirect()->route('kategori')->with(['success' => 'Status Kategori Diubah!']);
     }
 }

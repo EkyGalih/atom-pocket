@@ -9,8 +9,8 @@
     </div>
     <div class="col-4 col-m-1">
         <h5 class="sub_title btn-group">
-            <a href="{{ route('lategori.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
-            <a href="#" class="btn btn-info btn-sm">Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})</a>
+            <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
+            {{-- <a href="#" class="btn btn-info btn-sm">Aktif ({{ $dompet->where('status_dompet', '=', 'Aktif')->count() }})</a> --}}
         </h5>
     </div>
 </div>
@@ -19,20 +19,19 @@
         <tr>
             <td>#</td>
             <td>NAMA</td>
-            <td>REFERENSI</td>
             <td>DESKRIPSI</td>
             <td>STATUS</td>
             <td></td>
         </tr>
     </thead>
     <tbody>
-        @foreach ($dompet as $item)
+
+        @foreach ($kategori as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->nama }}</td>
-                <td>{{ $item->referensi }}</td>
                 <td>{{ $item->deskripsi }}</td>
-                <td>{{ $item->status_dompet }}</td>
+                <td>{{ $item->status_kategori }}</td>
                 <td>
 
                     <div class="btn-group">
@@ -43,11 +42,11 @@
                             <a class="dropdown-item" href="#">{{ $item->nama }}</a>
                             <hr/>
                             <a class="dropdown-item" href="#home"><i class="glyphicon glyphicon-search"></i> Detail</a>
-                            <a class="dropdown-item" href="{{ route('dompet.edit', $item->dompet_id) }}"><i class="glyphicon glyphicon-pencil"></i> Ubah</a>
+                            <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}"><i class="glyphicon glyphicon-pencil"></i> Ubah</a>
                             @if ($item->status_dompet == 'Aktif')
-                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="glyphicon glyphicon-times"></i> Tidak Aktif</a>
+                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="glyphicon glyphicon-times"></i> Tidak Aktif</a>
                             @else
-                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="glyphicon glyphicon-check"></i> Aktif</a>
+                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="glyphicon glyphicon-check"></i> Aktif</a>
                             @endif
                         </div>
                     </div>
@@ -55,6 +54,7 @@
                 </td>
             </tr>
         @endforeach
+
     </tbody>
 </table>
 @endsection
