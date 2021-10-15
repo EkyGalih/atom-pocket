@@ -17,7 +17,7 @@ class helper
     {
         $angka = '0123456789';
 
-        $kode_out = substr('WOUT'.str_shuffle($angka), 0, 9);
+        $kode_out = substr('WOUT'.str_shuffle($angka), 0, 10);
 
         return $kode_out;
     }

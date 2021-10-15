@@ -30,7 +30,7 @@
             <label for="nama">Nama <sup style="color: red;">*</sup> </label>
             <input type="text" name="nama" value="{{ $edit_dompet->nama }}" class="form-control @error('nama') is-invalid @enderror">
             @error('nama')
-                <div class="alert -alert-danger">
+                <div class="alert -alert-danger message">
                     {{ $message }}
                 </div>
             @enderror
@@ -51,7 +51,7 @@
             <label for="deskripsi">Deskripsi</label>
             <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror">{{ $edit_dompet->deskripsi }}</textarea>
             @error('deskripsi')
-                <div class="alert alert-danger">
+                <div class="alert alert-danger message">
                     {{ $message }}
                 </div>
             @enderror
@@ -89,7 +89,7 @@
             <label for="nama">Nama <sup style="color: red;">*</sup> </label>
             <input type="text" name="nama" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama">
             @error('nama')
-                <div class="alert alert-danger">
+                <div class="alert alert-danger message">
                     {{ $message }}
                 </div>
             @enderror
@@ -114,7 +114,7 @@
                 <label for="deskripsi">Deskripsi</label>
                 <textarea name="deskripsi" class="form-control" placeholder="Deskripsi">{{ old('deskripsi') }}</textarea>
                 @error('deskripsi')
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger message">
                         {{ $message }}
                     </div>
                 @enderror

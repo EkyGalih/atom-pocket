@@ -5,7 +5,7 @@
 @section('sub_title')
 <div class="row">
     <div class="col-8 col-m-1">
-        <h5 class="sub_title">LAPORAN <sub>Transaksi</sub> </h5>
+        <h5 class="sub_title">LAPORAN - <span style="font-size: 12px">Transaksi</span> </h5>
     </div>
 </div>
 <div class="card">
@@ -26,9 +26,9 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input type="text" name="tgl_awal" class="form-control datepicker @error('tgl_awal') is-invalid @enderror">
+                            <input type="text" name="tgl_awal" value="{{ old('tgl_awal') }}" class="form-control datepicker @error('tgl_awal') is-invalid @enderror">
                             @error('tgl_awal')
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger message">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -43,9 +43,9 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input type="text" name="tgl_akhir" class="form-control datepicker @error('tgl_akhir') is-invalid @enderror">
+                            <input type="text" name="tgl_akhir" value="{{ old('tgl_akhir') }}" class="form-control datepicker @error('tgl_akhir') is-invalid @enderror">
                             @error('tgl_akhir')
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger message">
                                     {{ $message }}
                                 </div>
                             @enderror

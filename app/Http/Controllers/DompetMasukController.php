@@ -75,7 +75,7 @@ class DompetMasukController extends Controller
             'kode' => $transaksi['kode'],
             'deskripsi' => $transaksi['deskripsi'],
             'tanggal' => $transaksi['tanggal'],
-            'nilai' => '(+)'.$transaksi['nilai'],
+            'nilai' => $transaksi['nilai'],
             'dompet_ID' => $transaksi['dompet_id'],
             'kategori_ID' => $transaksi['kategori_id'],
             'status_ID' => $id

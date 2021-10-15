@@ -33,7 +33,7 @@
                 <td>{{ $item->kode }}</td>
                 <td>{{ $item->deskripsi }}</td>
                 <td>{{ $item->kategori }}</td>
-                <td>{{ $item->nilai }}</td>
+                <td>(+) {{ number_format($item->nilai) }}</td>
                 <td>{{ $item->nama_dompet }}</td>
             </tr>
         @endforeach

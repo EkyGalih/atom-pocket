@@ -20,34 +20,35 @@
                     </tr>
                 </table>
             </center>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">#</th>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">TANGGAL</th>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">KODE</th>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">DESKRIPSI</th>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">DOMPET</th>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">KATEGORI</th>
-                        <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">NILAI</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($laporan as $item)
+            <center>
+                <table>
+                    <thead>
                         <tr>
-                            <td style="font-size: 12px; border: solid; text-align: center;">{{ $loop->iteration }}</td>
-                            <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->tanggal }}</td>
-                            <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->kode }}</td>
-                            <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->deskripsi }}</td>
-                            <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->nama_dompet }}</td>
-                            <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->nama_kategori }}</td>
-                            <td style="font-size: 12px; border: solid; text-align: left;">{{ number_format($item->nilai) }}</td>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">#</th>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">TANGGAL</th>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">KODE</th>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">DESKRIPSI</th>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">DOMPET</th>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">KATEGORI</th>
+                            <th style="font-size: 12px; font-weight: bold; text-align: center; border: solid;">NILAI</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
 
+                    <tbody>
+                        @foreach ($laporan as $item)
+                            <tr>
+                                <td style="font-size: 12px; border: solid; text-align: center;">{{ $loop->iteration }}</td>
+                                <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->tanggal }}</td>
+                                <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->kode }}</td>
+                                <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->deskripsi }}</td>
+                                <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->nama_dompet }}</td>
+                                <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->nama_kategori }}</td>
+                                <td style="font-size: 12px; border: solid; text-align: left;">{{ $item->status_transaksi == 'Masuk' ? '(+) ' : '(-) ' }}{{ number_format($item->nilai) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </center>
             <table>
                 <tr>
                     <td></td>

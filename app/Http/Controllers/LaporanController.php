@@ -84,19 +84,34 @@ class LaporanController extends Controller
                         ->whereBetween('tanggal', [$data['tgl_awal'], $data['tgl_akhir']])
                         ->get();
 
+        // Kondisi Pengecekan jika tidak ada record laporan dalam rentang waktu yang di tentukan
+        if ($laporan->isEmpty()) {
+
+            return redirect()->back()->with(['warning' => 'Tidak Ada Laporan Pada Rentang '. $tanggal]);
+            
+        }
+
         // Membuat kondisi untuk menampilkan data sesuai dengan inputan yang telah di lakukan
         if (count($data['status']) == 2) {
+
             $laporan->where('status_transaksi', '=', 'Masuk')->Where('status_transaksi', '=', 'Keluar');
+
         } elseif (count($data['status']) == 1) {
+
             if ($data['status'] == 'Masuk') {
                 $laporan->where('status_transaksi', '=', 'Masuk');
             } else {
                 $laporan->where('status_transaksi', '=', 'Keluar');
             }
+
         } elseif ($data['dompet_id'] != 'all') {
+
             $laporan->where('dompet_id', '=', $data['dompet_id']);
+
         } elseif ($data['kategori_id'] != 'all') {
+
             $laporan->where('kategori_id', '=', $data['kategori_id']);
+
         }
 
         // membuat operator penjumlahan untuk masing-masing transaksi masuk dan transaksi keluar untuk di tampilkan
@@ -106,14 +121,19 @@ class LaporanController extends Controller
         $total = ($total_masuk + $total_keluar); // Hitung total pengeluaran dan pemasukkan dan di tampung ke dalam variabel total
 
         // membuat kondisi untuk menentukan return mana yang akan di jalankan
-        if ($data['click'] == 'Buat Baru') {
+        if ($data['click'] == 'Buat Laporan') {
+
             return view('laporan.detail', ['laporan' => $laporan, 'tanggal' => $tanggal, 'total_masuk' => $total_masuk, 'total_keluar' => $total_keluar, 'total' => $total]);
-        } else {
+
+        } elseif ($data['click'] == 'Buat Ke Excel') {
+
             ob_end_clean();
             ob_start();
+
             // return view('laporan.export', ['laporan' => $laporan, 'tanggal' => $tanggal, 'total_masuk' => $total_masuk, 'total_keluar' => $total_keluar, 'total' => $total]);
             return Excel::download(new LaporanExport($laporan, $tanggal, $total_masuk, $total_keluar, $total), 'Laporan Transaksi.xlsx');
         }
+
     }
 
     /**

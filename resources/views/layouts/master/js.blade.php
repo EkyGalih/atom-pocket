@@ -45,5 +45,10 @@ $( function() {
     });
 });
 
+// fungsi tutup pesan error otomatis
+setTimeout(function() {
+    $('.message').toggle('hide')
+}, 4000);
+
 </script>
 @include('layouts.sweet-alert-notification')

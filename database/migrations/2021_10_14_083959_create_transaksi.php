@@ -15,7 +15,7 @@ class CreateTransaksi extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->string('ID', 40)->primary();
-            $table->string('kode', 9);
+            $table->string('kode', 10);
             $table->text('deskripsi', 100)->nullable();
             $table->date('tanggal');
             $table->string('nilai', 100);

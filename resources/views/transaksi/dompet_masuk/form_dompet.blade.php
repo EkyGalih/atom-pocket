@@ -78,7 +78,7 @@
                 <label for="nilai">Nilai : <sup style="color: red;">*</sup> </label>
                 <input type="text" name="nilai" class="form-control @error('nilai') is-invalid @enderror" placeholder="0">
                 @error('nilai')
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger message">
                         {{ $message }}
                     </div>
                 @enderror

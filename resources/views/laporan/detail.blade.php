@@ -50,7 +50,7 @@
                             <td>{{ $item->deskripsi }}</td>
                             <td>{{ $item->nama_dompet }}</td>
                             <td>{{ $item->nama_kategori }}</td>
-                            <td>{{ $item->nilai }}</td>
+                            <td>{{ $item->status_transaksi == 'Masuk' ? '(+) ' : '(-) ' }}{{ number_format($item->nilai) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

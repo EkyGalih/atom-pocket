@@ -61,8 +61,7 @@
                           <span class="caret"></span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">{{ $item->nama }}</a>
-                            <hr/>
+                            <a class="dropdown-header" href="#">{{ $item->nama }}</a>
                             <a class="dropdown-item" href="{{ route('kategori.show', $item->status_ID) }}"><i class="fa fa-search"></i> Detail</a>
                             <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}"><i class="fa fa-pencil"></i> Ubah</a>
                             @if ($item->status_kategori == 'Aktif')

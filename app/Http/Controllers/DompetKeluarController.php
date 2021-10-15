@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransaksiValidasi;
 use App\Models\Dompet;
 use App\Models\Kategori;
 use App\Models\Transaksi;
@@ -58,7 +59,7 @@ class DompetKeluarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransaksiValidasi $request)
     {
         $transaksi = $request->all();
 
@@ -74,7 +75,7 @@ class DompetKeluarController extends Controller
             'kode' => $transaksi['kode'],
             'deskripsi' => $transaksi['deskripsi'],
             'tanggal' => $transaksi['tanggal'],
-            'nilai' => '(-)'.$transaksi['nilai'],
+            'nilai' => $transaksi['nilai'],
             'dompet_ID' => $transaksi['dompet_id'],
             'kategori_ID' => $transaksi['kategori_id'],
             'status_ID' => $id
