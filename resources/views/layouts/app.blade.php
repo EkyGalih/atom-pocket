@@ -22,11 +22,13 @@
                     </div>
                     <div id="isi_silebar">
                         <ul>
-                            <li>Master</li>
-                            <ul>
-                                <li><a href="{{ route('dompet') }}">Dompet</a></li>
-                                <li><a href="{{ route('kategori') }}">Kategori</a></li>
-                            </ul>
+                            <div class="dropdown">
+                                <li>Master</li>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><a href="{{ route('dompet') }}">Dompet</a></li>
+                                    <li class="dropdown-item"><a href="{{ route('kategori') }}">Kategori</a></li>
+                                </ul>
+                            </div>
                             <li>Transaksi</li>
                             <ul>
                                 <li><a href="{{ route('dompet_masuk') }}">Dompet Masuk</a></li>
@@ -34,7 +36,7 @@
                             </ul>
                             <li>Laporan</li>
                             <ul>
-                                <li><a href="#">Laporan Transaksi</a></li>
+                                <li><a href="{{ route('laporan') }}">Laporan Transaksi</a></li>
                             </ul>
                         </ul>
                     </div>

@@ -4,3 +4,4 @@
 <link rel="stylesheet" href="{{ asset('bootstrap/glyphicons.css') }}">
 <link rel="stylesheet" href="{{ asset('bootstrap/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('DataTables/dataTables.min.css') }}">
+<link rel="stylesheet" href="{{ asset('jquery/jquery-ui.css') }}">

@@ -14,8 +14,8 @@
         </h5>
     </div>
 </div>
-<table class="table table-hover-table-striped table-primary" id="dompet">
-    <thead>
+<table class="table table-hover-table-striped dompet">
+    <thead class="table-primary">
         <tr>
             <td>#</td>
             <td>NAMA</td>

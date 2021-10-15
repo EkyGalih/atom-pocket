@@ -145,7 +145,7 @@ background-color: #fff;
 #footer{
     background-color: #0277BD;
     height:90px;
-    width: auto;
+    width: 100%;
 }
 
 #footer #text{

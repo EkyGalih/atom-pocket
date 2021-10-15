@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Dompet Masuk')
+@section('title', 'Dompet Keluar')
 
 @section('sub_title')
 <div class="row">
     <div class="col-8 col-m-1">
-        <h5 class="sub_title">DOMPET MASUK</h5>
+        <h5 class="sub_title">DOMPET KELUAR</h5>
     </div>
     <div class="col-4 col-m-1">
         <h5 class="sub_title btn-group">
-            <a href="{{ route('dompet_masuk.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
+            <a href="{{ route('dompet_keluar.create') }}" class="btn btn-primary btn-sm">Buat Baru</a>
         </h5>
     </div>
 </div>
@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($dompet_masuk as $item)
+        @foreach ($dompet_keluar as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->tanggal }}</td>

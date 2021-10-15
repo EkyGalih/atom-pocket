@@ -18,7 +18,7 @@ class CreateTransaksi extends Migration
             $table->string('kode', 9);
             $table->text('deskripsi', 100)->nullable();
             $table->date('tanggal');
-            $table->float('nilai');
+            $table->string('nilai', 100);
             $table->string('dompet_ID', 40);
             $table->string('kategori_ID', 40);
             $table->string('status_ID', 40);

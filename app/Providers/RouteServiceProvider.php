@@ -63,6 +63,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapDompetMasukRoutes();
         $this->mapDompetKeluarRoutes();
+
+        $this->mapLaporanRoutes();
     }
 
     public function mapWebRoutes()
@@ -110,5 +112,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/transaksi/dompet_keluar.php'));
+    }
+
+    public function mapLaporanRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/laporan/laporan_transaksi.php'));
     }
 }

@@ -3,9 +3,11 @@
 <script src="{{ asset('bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('sweetAlert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('DataTables/dataTables.min.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
 <script>
 $(document).ready(function() {
-    $('#dompet').DataTable({
+    $('.dompet').DataTable({
         "oLanguage": {
             "sLengthMenu": "_MENU_ /Halaman"
         },
@@ -24,5 +26,24 @@ $(document).ready(function() {
         }
     });
 } );
+
+// Membuat fungsi agar form hanya bisa diinputkan angka saja
+function isInputNumber(event) {
+        var char = String.fromCharCode(event.which);
+        if (!(/[0-9]/).test(char)) {
+            event.preventDefault();
+        }
+}
+
+// Buat Format Tanggal sesuai yang di inginkan
+$( function() {
+    $( ".datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        showAnim: "slideDown"
+    });
+});
+
 </script>
 @include('layouts.sweet-alert-notification')

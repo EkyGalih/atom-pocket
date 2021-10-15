@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Buat Dompet Masuk Baru')
+@section('title', 'Buat Dompet Keluar Baru')
 
 @section('additional-css')
 <link rel="stylesheet" href="{{ asset('DataTables/dataTables.min.css') }}">
@@ -9,15 +9,16 @@
 @section('sub_title')
 <div class="row">
     <div class="col-8 col-m-1">
-        <div class="sub_title">DOMPET MASUK- <sub>@if (isset($edit_dompet)) Ubah Dompet Masuk @else Buat Baru @endif</sub></div> {{-- Membuat kondisi agar title menyesuaikan dengan halaman yang di akses --}}
+        <div class="sub_title">DOMPET KELUAR- <sub>@if (isset($edit_dompet)) Ubah Dompet Keluar @else Buat Baru @endif</sub></div> {{-- Membuat kondisi agar title menyesuaikan dengan halaman yang di akses --}}
     </div>
     <div class="col-4 col-m-4">
         <div class="sub_title btn-group">
-            <a href="{{ route('dompet') }}" class="btn btn-primary btn-sm">Kelola Dompet Masuk</a>
+            <a href="{{ route('dompet_keluar') }}" class="btn btn-primary btn-sm">Kelola Dompet Keluar</a>
         </div>
     </div>
 </div>
-<form action="{{ route('dompet_masuk.store') }}" method="POST">
+
+<form action="{{ route('dompet_keluar.store') }}" method="POST">
     @csrf
 
     <div class="row">
@@ -25,7 +26,7 @@
            <div class="form-group">
 
             <label for="kode">Kode : </label>
-            <input type="text" name="kode" value="{{ App\Helper\helper::kode_in() }}" class="form-control @error('kode') is-invalid @enderror">
+            <input type="text" name="kode" value="{{ App\Helper\helper::kode_out() }}" class="form-control @error('kode') is-invalid @enderror">
             @error('kode')
                 <div class="alert alert-danger">
                     {{ $message }}

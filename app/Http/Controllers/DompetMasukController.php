@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransaksiValidasi;
 use App\Models\Dompet;
 use App\Models\Kategori;
 use App\Models\Transaksi;
+use App\Models\TransaksiStatus;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class DompetMasukController extends Controller
 {
@@ -18,12 +21,17 @@ class DompetMasukController extends Controller
     {
         // Query data dari tabel dompet_masuk
         $dompet_masuk = Transaksi::join('transaksi_status', 'transaksi.status_ID', '=', 'transaksi_status.id')
-                    ->select(
-                        'transaksi.id as transaksi_id',
-                        'transaksi.*',
-                        'transaksi_status.*'
-                    )
-                    ->get();
+                        ->join('dompet', 'transaksi.dompet_ID', '=', 'dompet.id')
+                        ->join('kategori', 'transaksi.kategori_ID', '=', 'kategori.id')
+                        ->select(
+                            'transaksi.id as transaksi_id',
+                            'dompet.nama as nama_dompet',
+                            'kategori.nama as kategori',
+                            'transaksi.*',
+                            'transaksi_status.*'
+                        )
+                        ->where('transaksi_status.status_transaksi', '=', 'Masuk')
+                        ->get();
 
         return view('transaksi.dompet_masuk.index', ['dompet_masuk' => $dompet_masuk]);
     }
@@ -51,9 +59,29 @@ class DompetMasukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransaksiValidasi $request)
     {
-        //
+        $transaksi = $request->all();
+
+        $id = (string)Uuid::generate(4);
+
+        TransaksiStatus::create([
+            'ID' => $id,
+            'status_transaksi' => 'Masuk'
+        ]);
+
+        Transaksi::create([
+            'ID' => (string)Uuid::generate(4),
+            'kode' => $transaksi['kode'],
+            'deskripsi' => $transaksi['deskripsi'],
+            'tanggal' => $transaksi['tanggal'],
+            'nilai' => '(+)'.$transaksi['nilai'],
+            'dompet_ID' => $transaksi['dompet_id'],
+            'kategori_ID' => $transaksi['kategori_id'],
+            'status_ID' => $id
+        ]);
+
+        return redirect()->route('dompet_masuk')->with(['success' => 'Transaksi Masuk Berhasil Disimpan!']);
     }
 
     /**
