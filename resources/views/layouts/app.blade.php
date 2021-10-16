@@ -20,9 +20,9 @@
                     <div id="judul_silebar">
                         MENU
                     </div>
-                    <div class="navbar navbar-expand-md navbar-light navbar-laravel" id="isi_silebar">
-                        <div class="collapse navbar-collapse">
-                            <ul>
+                    <nav class="navbar navbar-dark bg-primary isi_silebar">
+                        <div>
+                            <ul class="navbar-nav mr-auto">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master</a>
                                     <ul class="dropdown-menu">
@@ -45,7 +45,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </nav>
                 </div>
             </div>
             <div class="col-9 col-m-7">
