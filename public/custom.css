@@ -167,7 +167,7 @@ background-color: #fff;
 
 #silebar {
     width:100%;
-    height: 5000px;
+    height: 500px;
     float:left;
     border-right:1px solid #bababa;
     border-bottom:1px solid #bababa;
@@ -202,6 +202,10 @@ background-color: #fff;
 
 #silebar a:hover{
     color: #0786AB;
+}
+
+span {
+    font-size: 12px;
 }
 
 #konten{

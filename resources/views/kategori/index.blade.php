@@ -10,7 +10,7 @@
 @section('sub_title')
 <div class="row">
     <div class="col-9 col-m-1">
-        <h5 class="sub_title">KATEGORI - <span style="font-size: 12px;">{{$status == "" ? 'Aktif' : $status}}</span></h5>
+        <h5 class="sub_title">KATEGORI - <span>{{$status == "" ? 'Aktif' : $status}}</span></h5>
     </div>
     <div class="col-3 col-m-1">
         <h5 class="sub_title btn-group">

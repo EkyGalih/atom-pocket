@@ -10,7 +10,7 @@
 @section('sub_title')
 <div class="row">
     <div class="col-8 col-m-1">
-        <h5 class="sub_title">LAPORAN - <span style="font-size: 12px">Transaksi</span> </h5>
+        <h5 class="sub_title">LAPORAN - <span>Transaksi</span> </h5>
     </div>
 </div>
 <div class="card">

@@ -15,7 +15,7 @@
 @section('sub_title')
 <div class="row">
     <div class="col-10 col-m-1">
-        <div class="sub_title">DOMPET MASUK- <sub>@if (isset($edit_dompet)) Ubah Dompet Masuk @else Buat Baru @endif</sub></div> {{-- Membuat kondisi agar title menyesuaikan dengan halaman yang di akses --}}
+        <div class="sub_title">DOMPET MASUK- <span>@if (isset($edit_dompet)) Ubah Dompet Masuk @else Buat Baru @endif</span></div> {{-- Membuat kondisi agar title menyesuaikan dengan halaman yang di akses --}}
     </div>
     <div class="col-2 col-m-4">
         <div class="sub_title btn-group">
