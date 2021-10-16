@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+{{-- konfigurasi agar menu navbar tetap terbuka ketika halaman yang dipilih masih aktif --}}
+@section('menu-transaksi', 'show')
+@section('show-menu-transaksi', 'show')
+@section('show-dompet_masuk', 'active')
+
 @section('title', 'Dompet Masuk')
 
 @section('sub_title')

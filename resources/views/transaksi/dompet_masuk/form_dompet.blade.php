@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
+{{-- konfigurasi agar menu navbar tetap terbuka ketika halaman yang dipilih masih aktif --}}
+@section('menu-transaksi', 'show')
+@section('show-menu-transaksi', 'show')
+@section('show-dompet_masuk', 'active')
+
 @section('title', 'Buat Dompet Masuk Baru')
 
+{{-- menambahkan css external khusus untuk halaman ini saja --}}
 @section('additional-css')
 <link rel="stylesheet" href="{{ asset('DataTables/dataTables.min.css') }}">
 @endsection

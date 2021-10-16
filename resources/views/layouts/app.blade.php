@@ -23,24 +23,32 @@
                     <nav class="navbar navbar-dark bg-primary isi_silebar">
                         <div>
                             <ul class="navbar-nav mr-auto">
-                                <li class="dropdown">
+                                <li class="dropdown @yield('menu-master')">
+
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-item"><a href="{{ route('dompet') }}">Dompet</a></li>
-                                        <li class="dropdown-item"><a href="{{ route('kategori') }}">Kategori</a></li>
+
+                                    <ul class="dropdown-menu @yield('show-menu-master')">
+
+                                        <li class="dropdown-item @yield('show-dompet')"><a href="{{ route('dompet') }}">Dompet</a></li>
+                                        <li class="dropdown-item @yield('show-kategori')"><a href="{{ route('kategori') }}">Kategori</a></li>
+
                                     </ul>
                                 </li>
-                                <li class="dropdown">
+                                <li class="dropdown @yield('menu-transaksi')">
+
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaksi</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-item"><a href="{{ route('dompet_masuk') }}">Dompet Masuk</a></li>
-                                        <li class="dropdown-item"><a href="{{ route('dompet_keluar') }}">Dompet Keluar</a></li>
+
+                                    <ul class="dropdown-menu @yield('show-menu-transaksi')">
+
+                                        <li class="dropdown-item @yield('show-dompet_masuk')"><a href="{{ route('dompet_masuk') }}">Dompet Masuk</a></li>
+                                        <li class="dropdown-item @yield('show-dompet_keluar')"><a href="{{ route('dompet_keluar') }}">Dompet Keluar</a></li>
+
                                     </ul>
                                 </li>
-                                <li class="dropdown">
+                                <li class="dropdown @yield('menu-laporan')">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-item"><a href="{{ route('laporan') }}">Laporan Transaksi</a></li>
+                                    <ul class="dropdown-menu @yield('show-menu-laporan')">
+                                        <li class="dropdown-item @yield('show-laporan')"><a href="{{ route('laporan') }}">Laporan Transaksi</a></li>
                                     </ul>
                                 </li>
                             </ul>
