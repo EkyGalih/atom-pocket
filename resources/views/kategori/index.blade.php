@@ -24,11 +24,11 @@
                 <div class="dropdown-menu">
                     {{-- Buat Kondisi untuk menampilkan link Aktif jika status Tidak Aktif, dan link Tidak Aktif jika status Aktif --}}
                     @if ($status == 'Aktif')
-                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Aktif')->count() }} )</a>
+                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )</a>
                     @elseif ($status == 'Tidak Aktif')
-                    <a href="{{ route('kategori', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm">Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )</a>
+                    <a href="{{ route('kategori', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm">Aktif ( {{ $kategori->where('status_kategori', '=', 'Aktif')->count() }} )</a>
                     @else
-                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Aktif')->count() }} )</a>
+                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )</a>
                     @endif
                 </div>
 

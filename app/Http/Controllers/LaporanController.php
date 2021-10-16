@@ -7,7 +7,6 @@ use App\Http\Requests\LaporanValidasi;
 use App\Models\Dompet;
 use App\Models\Kategori;
 use App\Models\Transaksi;
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanController extends Controller
@@ -34,26 +33,6 @@ class LaporanController extends Controller
         return view('laporan.index', ['dompet' => $dompet, 'kategori' => $kategori]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -67,7 +46,15 @@ class LaporanController extends Controller
 
         $tanggal = $data['tgl_awal'] . ' - ' . $data['tgl_akhir']; // Buat variabel tanggal untuk menampilkan range tanggal laporan yang sudah ditentukan
 
-        $laporan = Transaksi::join('transaksi_status', 'transaksi.status_ID', '=', 'transaksi_status.id')
+        // Membuat kondisi untuk menampilkan data sesuai dengan inputan yang telah di lakukan
+        $query_dompet = $data['dompet_id'] != 'all' ? $data['dompet_id'] : null; // jika dompet tidak seleksi semua, maka tentukan value untuk seleksi data
+
+        $query_kategory = $data['kategori_id'] != 'all' ? $data['kategori_id'] : null; // jika kategori tidak di seleksi semua, maka tentukan value untuk seleksi data
+
+        // Buat kondisi ketika untuk pengecekan status yang di pilih oleh user, kondisi ini akan mengecek jika user memilih salah 1 dari status
+        if (count($data['status']) == 1) {
+
+            $laporan = Transaksi::join('transaksi_status', 'transaksi.status_ID', '=', 'transaksi_status.id')
                         ->join('kategori', 'transaksi.kategori_ID', '=', 'kategori.id')
                         ->join('dompet', 'transaksi.dompet_ID', '=', 'dompet.id')
                         ->select(
@@ -82,37 +69,54 @@ class LaporanController extends Controller
                             'transaksi_status.status_transaksi'
                             )
                         ->whereBetween('tanggal', [$data['tgl_awal'], $data['tgl_akhir']])
+
+                        // pencarian akan di lakukan berdasarkan kondisi jika terpenuhi
+                        ->when($query_dompet, function ($laporan, $query_dompet) {
+                            return $laporan->where('dompet.id', $query_dompet);
+                        })
+                        ->when($query_kategory, function ($laporan, $query_kategory) {
+                            return $laporan->where('kategori.id', $query_kategory);
+                        })
+
+                        ->where('transaksi_status.status_transaksi', '=', $data['status'][0])
                         ->get();
 
-        // Kondisi Pengecekan jika tidak ada record laporan dalam rentang waktu yang di tentukan
+        } else {
+
+            $laporan = Transaksi::join('transaksi_status', 'transaksi.status_ID', '=', 'transaksi_status.id')
+                        ->join('kategori', 'transaksi.kategori_ID', '=', 'kategori.id')
+                        ->join('dompet', 'transaksi.dompet_ID', '=', 'dompet.id')
+                        ->select(
+                            'dompet.ID as dompet_id',
+                            'kategori.ID as kategori_id',
+                            'transaksi.tanggal',
+                            'transaksi.kode',
+                            'dompet.deskripsi',
+                            'dompet.nama as nama_dompet',
+                            'kategori.nama as nama_kategori',
+                            'transaksi.nilai',
+                            'transaksi_status.status_transaksi'
+                            )
+                            ->whereBetween('tanggal', [$data['tgl_awal'], $data['tgl_akhir']])
+
+                            // Pencarian akan di lakukan berdasarkan kondisi jika terpenuhi
+                            ->when($query_dompet, function ($laporan, $query_dompet) {
+                                return $laporan->where('dompet.id', $query_dompet);
+                            })
+                            ->when($query_kategory, function ($laporan, $query_kategory) {
+                                return $laporan->where('kategori.id', $query_kategory);
+                            })
+                            ->get();
+
+            }
+
+        // Kondisi Pengecekan jika tidak ada record laporan dalam rentang waktu yang di pilih
         if ($laporan->isEmpty()) {
 
             return redirect()->back()->with(['warning' => 'Tidak Ada Laporan Pada Rentang '. $tanggal]);
-            
-        }
-
-        // Membuat kondisi untuk menampilkan data sesuai dengan inputan yang telah di lakukan
-        if (count($data['status']) == 2) {
-
-            $laporan->where('status_transaksi', '=', 'Masuk')->Where('status_transaksi', '=', 'Keluar');
-
-        } elseif (count($data['status']) == 1) {
-
-            if ($data['status'] == 'Masuk') {
-                $laporan->where('status_transaksi', '=', 'Masuk');
-            } else {
-                $laporan->where('status_transaksi', '=', 'Keluar');
-            }
-
-        } elseif ($data['dompet_id'] != 'all') {
-
-            $laporan->where('dompet_id', '=', $data['dompet_id']);
-
-        } elseif ($data['kategori_id'] != 'all') {
-
-            $laporan->where('kategori_id', '=', $data['kategori_id']);
 
         }
+
 
         // membuat operator penjumlahan untuk masing-masing transaksi masuk dan transaksi keluar untuk di tampilkan
         $total_masuk = $laporan->where('status_transaksi', '=', 'Masuk')->sum('nilai');
@@ -136,37 +140,4 @@ class LaporanController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

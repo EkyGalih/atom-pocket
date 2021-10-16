@@ -8,7 +8,8 @@ class helper
     {
         $angka = '0123456789';
 
-        $kode_in = substr('WIN'.str_shuffle($angka), 0, 9);
+        $generate = substr(str_shuffle($angka), 0, 6);
+        $kode_in = 'WIN'.$generate.'1';
 
         return $kode_in;
     }
@@ -17,7 +18,8 @@ class helper
     {
         $angka = '0123456789';
 
-        $kode_out = substr('WOUT'.str_shuffle($angka), 0, 10);
+        $generate = substr(str_shuffle($angka), 0, 6);
+        $kode_out = 'WOUT'.$generate.'2';
 
         return $kode_out;
     }

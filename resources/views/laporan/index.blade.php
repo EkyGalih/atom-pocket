@@ -54,10 +54,16 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <div class="form-group">
+                    <div class="control-group">
                         <label for="status">Status</label><br/>
-                        <input type="checkbox" value="Masuk" name="status[]" checked> Tampilkan Uang Masuk <br/>
-                        <input type="checkbox" value="Keluar" name="status[]" checked> Tampilkan Uang Keluar
+                        <label class="control control--checkbox">Tampilkan Uang Masuk
+                            <input type="checkbox" value="Masuk" name="status[]" checked="checked"/>
+                            <div class="control__indicator"></div>
+                        </label>
+                        <label class="control control--checkbox">Tampilkan Uang Keluar
+                            <input type="checkbox" value="Keluar" name="status[]" checked="checked"/>
+                            <div class="control__indicator"></div>
+                        </label>
                     </div>
                 </div>
 

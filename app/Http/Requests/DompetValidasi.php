@@ -24,7 +24,7 @@ class DompetValidasi extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|max:5',
+            'nama' => 'required|min:5',
             'deskripsi' => 'max:100'
         ];
     }
@@ -33,7 +33,8 @@ class DompetValidasi extends FormRequest
     {
         return [
             'required' => ':attribute harus diisi',
-            'max' => ':attribute maximal :max karakter'
+            'max' => ':attribute maximal :max karakter',
+            'min' => ':attribute minimal :min karakter'
         ];
     }
 

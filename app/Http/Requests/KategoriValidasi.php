@@ -24,7 +24,7 @@ class KategoriValidasi extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|max:5',
+            'nama' => 'required|min:5',
             'deskripsi' => 'max:100'
         ];
     }
@@ -33,7 +33,8 @@ class KategoriValidasi extends FormRequest
     {
         return [
             'required' => ':attribute harus diisi',
-            'max' => 'Panjang maximal :max karakter'
+            'max' => 'Panjang maximal :max karakter',
+            'min' => 'Panjaang minimal :min karakter'
         ];
     }
 
