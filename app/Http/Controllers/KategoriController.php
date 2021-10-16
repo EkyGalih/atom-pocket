@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KategoriValidasi;
 use App\Models\Kategori;
 use App\Models\KategoriStatus;
-use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 
 class KategoriController extends Controller
@@ -60,7 +59,7 @@ class KategoriController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\KategoriValidasi  $request
      * @return \Illuminate\Http\Response
      */
     public function store(KategoriValidasi $request)
@@ -132,7 +131,7 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KategoriValidasi $request, $id)
     {
         $kategori = $request->all();
 

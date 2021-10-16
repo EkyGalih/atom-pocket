@@ -29,11 +29,23 @@
                 <div class="dropdown-menu">
                     {{-- Buat Kondisi untuk menampilkan link Aktif jika status Tidak Aktif, dan link Tidak Aktif jika status Aktif --}}
                     @if ($status == 'Aktif')
-                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )</a>
+
+                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm" id="change_color">
+                        Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )
+                    </a>
+
                     @elseif ($status == 'Tidak Aktif')
-                    <a href="{{ route('kategori', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm">Aktif ( {{ $kategori->where('status_kategori', '=', 'Aktif')->count() }} )</a>
+
+                    <a href="{{ route('kategori', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm" id="change_color">
+                        Aktif ( {{ $kategori->where('status_kategori', '=', 'Aktif')->count() }} )
+                    </a>
+
                     @else
-                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )</a>
+
+                    <a href="{{ route('kategori', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm" id="change_color">
+                        Tidak Aktif ( {{ $kategori->where('status_kategori', '=', 'Tidak Aktif')->count() }} )
+                    </a>
+
                     @endif
                 </div>
 
@@ -67,12 +79,23 @@
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-header" href="#">{{ $item->nama }}</a>
-                            <a class="dropdown-item" href="{{ route('kategori.show', $item->status_ID) }}"><i class="fa fa-search"></i> Detail</a>
-                            <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}"><i class="fa fa-pencil"></i> Ubah</a>
+
+                            <a class="dropdown-item" href="{{ route('kategori.show', $item->status_ID) }}" id="change_color">
+                                <i class="fa fa-search"></i> Detail
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('kategori.edit', $item->kategori_id) }}" id="change_color">
+                                <i class="fa fa-pencil"></i> Ubah
+                            </a>
+
                             @if ($item->status_kategori == 'Aktif')
-                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="fa fa-times"></i> Tidak Aktif</a>
+                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}" id="change_color">
+                                <i class="fa fa-times"></i> Tidak Aktif
+                            </a>
                             @else
-                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}"><i class="fa fa-check"></i> Aktif</a>
+                            <a class="dropdown-item" href="{{ route('kategori.status', $item->status_ID) }}" id="change_color">
+                                <i class="fa fa-check"></i> Aktif
+                            </a>
                             @endif
                         </div>
                     </div>

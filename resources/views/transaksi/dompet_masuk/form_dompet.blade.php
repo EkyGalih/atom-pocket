@@ -34,7 +34,7 @@
             <input type="text" name="kode" value="{{ App\Helper\helper::kode_in() }}" class="form-control @error('kode') is-invalid @enderror">
             @error('kode')
                 <div class="alert alert-danger">
-                    {{ $message }}
+                    <i class="fa fa-warning"></i> {{ $message }}
                 </div>
             @enderror
 
@@ -85,7 +85,7 @@
                 <input type="text" name="nilai" class="form-control @error('nilai') is-invalid @enderror" placeholder="0">
                 @error('nilai')
                     <div class="alert alert-danger message">
-                        {{ $message }}
+                        <i class="fa fa-warning"></i> {{ $message }}
                     </div>
                 @enderror
             </div>
@@ -101,7 +101,7 @@
                 <textarea name="deskripsi" class="form-control" placeholder="Deskripsi">{{ old('deskripsi') }}</textarea>
                 @error('deskripsi')
                     <div class="alert alert-danger">
-                        {{ $message }}
+                        <i class="fa fa-warning"></i> {{ $message }}
                     </div>
                 @enderror
             </div>

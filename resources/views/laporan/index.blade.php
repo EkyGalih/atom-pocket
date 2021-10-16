@@ -32,12 +32,12 @@
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                             <input type="text" name="tgl_awal" value="{{ old('tgl_awal') }}" class="form-control datepicker @error('tgl_awal') is-invalid @enderror">
-                            @error('tgl_awal')
-                                <div class="alert alert-danger message">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
+                        @error('tgl_awal')
+                            <div class="alert alert-danger message">
+                                <i class="fa fa-warning"></i> {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
 
@@ -49,12 +49,12 @@
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                             <input type="text" name="tgl_akhir" value="{{ old('tgl_akhir') }}" class="form-control datepicker @error('tgl_akhir') is-invalid @enderror">
-                            @error('tgl_akhir')
-                                <div class="alert alert-danger message">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
+                        @error('tgl_akhir')
+                            <div class="alert alert-danger message">
+                                <i class="fa fa-warning"></i> {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
 

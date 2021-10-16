@@ -2,8 +2,10 @@
 
 namespace App\Helper;
 
-class helper
+class helper // class helper untuk digunakan secara flexibel
 {
+
+    // membuat fungsi generate kode untuk dompet masuk
     public static function kode_in()
     {
         $angka = '0123456789';
@@ -14,6 +16,7 @@ class helper
         return $kode_in;
     }
 
+    // membuat fungsi generate kode untuk dompet keluar
     public static function kode_out()
     {
         $angka = '0123456789';

@@ -131,6 +131,17 @@ background-color: #fff;
     border-color: #0e0d0d;
   }
 
+/* fungsi yang akan digunakan ketika terjadi bentrok warna dengan template */
+#change_color {
+    background-color: #fff;
+    color: #000;
+}
+
+#change_color:hover {
+    background-color: #ccc;
+    color: #0e0d0d;
+}
+
 #wrap {
     width:98%;
     height: 900px;

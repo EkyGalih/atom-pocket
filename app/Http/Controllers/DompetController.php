@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DompetValidasi;
 use App\Models\Dompet;
 use App\Models\DompetStatus;
-use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 
 class DompetController extends Controller
@@ -127,11 +126,11 @@ class DompetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\DompetValidas  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DompetValidasi $request, $id)
     {
         $dompet = $request->all();
 

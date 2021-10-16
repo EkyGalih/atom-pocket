@@ -29,11 +29,23 @@
                 <div class="dropdown-menu">
                     {{-- Buat Kondisi untuk menampilkan link Aktif jika status Tidak Aktif, dan link Tidak Aktif jika status Aktif --}}
                     @if ($status == 'Aktif')
-                        <a href="{{ route('dompet', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $dompet->where('status_dompet', '=', 'Tidak Aktif')->count() }} )</a>
+
+                        <a href="{{ route('dompet', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm" id="change_color">
+                            Tidak Aktif ( {{ $dompet->where('status_dompet', '=', 'Tidak Aktif')->count() }} )
+                        </a>
+
                     @elseif ($status == 'Tidak Aktif')
-                        <a href="{{ route('dompet', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm">Aktif ( {{ $dompet->where('status_dompet', '=', 'Aktif')->count() }} )</a>
+
+                        <a href="{{ route('dompet', 'Aktif') }}" class="dropdown-item btn btn-info btn-sm" id="change_color">
+                            Aktif ( {{ $dompet->where('status_dompet', '=', 'Aktif')->count() }} )
+                        </a>
+
                     @else
-                        <a href="{{ route('dompet', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm">Tidak Aktif ( {{ $dompet->where('status_dompet', '=', 'Tidak Aktif')->count() }} )</a>
+
+                        <a href="{{ route('dompet', 'Tidak Aktif') }}" class="dropdown-item btn btn-info btn-sm" id="change_color">
+                            Tidak Aktif ( {{ $dompet->where('status_dompet', '=', 'Tidak Aktif')->count() }} )
+                        </a>
+
                     @endif
                 </div>
 
@@ -68,12 +80,23 @@
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-header" href="#">{{ $item->nama }}</a>
-                            <a class="dropdown-item" href="{{ route('dompet.show', $item->status_ID) }}"><i class="fa fa-search"></i> Detail</a>
-                            <a class="dropdown-item" href="{{ route('dompet.edit', $item->dompet_id) }}"><i class="fa fa-pencil"></i> Ubah</a>
+
+                            <a class="dropdown-item" id="change_color" href="{{ route('dompet.show', $item->status_ID) }}">
+                                <i class="fa fa-search"></i> Detail
+                            </a>
+
+                            <a class="dropdown-item" id="change_color" href="{{ route('dompet.edit', $item->dompet_id) }}">
+                                <i class="fa fa-pencil"></i> Ubah
+                            </a>
+
                             @if ($item->status_dompet == 'Aktif')
-                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="fa fa-times"></i> Tidak Aktif</a>
+                            <a class="dropdown-item" id="change_color" href="{{ route('dompet.status', $item->status_ID) }}">
+                                <i class="fa fa-times"></i> Tidak Aktif
+                            </a>
                             @else
-                            <a class="dropdown-item" href="{{ route('dompet.status', $item->status_ID) }}"><i class="fa fa-check"></i> Aktif</a>
+                            <a class="dropdown-item" id="change_color" href="{{ route('dompet.status', $item->status_ID) }}">
+                                <i class="fa fa-check"></i> Aktif
+                            </a>
                             @endif
                         </div>
                     </div>

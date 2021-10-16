@@ -7,7 +7,6 @@ use App\Models\Dompet;
 use App\Models\Kategori;
 use App\Models\Transaksi;
 use App\Models\TransaksiStatus;
-use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 
 class DompetMasukController extends Controller
@@ -63,7 +62,7 @@ class DompetMasukController extends Controller
     {
         $transaksi = $request->all();
 
-        $id = (string)Uuid::generate(4);
+        $id = (string)Uuid::generate(4); // variabel untuk menampung UUID, dan akan digunakan oleh 2 tabel sekaligus
 
         TransaksiStatus::create([
             'ID' => $id,
@@ -82,50 +81,5 @@ class DompetMasukController extends Controller
         ]);
 
         return redirect()->route('dompet_masuk')->with(['success' => 'Transaksi Masuk Berhasil Disimpan!']);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
